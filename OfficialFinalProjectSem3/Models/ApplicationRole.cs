@@ -8,12 +8,7 @@ namespace OfficialFinalProjectSem3.Models
 {
     public class ApplicationRole : IdentityRole
     {
-        public ApplicationRole() : base()
-        {
-        }
-
-        public ApplicationRole(string name) : base(name)
-        {
-        }
+        public ApplicationRole() : base() { }
+        public ApplicationRole(string name) : base(name) { }
     }
 }

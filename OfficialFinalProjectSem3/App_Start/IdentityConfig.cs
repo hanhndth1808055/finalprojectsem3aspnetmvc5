@@ -28,7 +28,7 @@ namespace OfficialFinalProjectSem3
                 Port = 587,
                 UseDefaultCredentials = false,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
-                Credentials = new NetworkCredential("duypdth1808013@fpt.edu.vn", "69912110"),
+                Credentials = new NetworkCredential("duypdth1808013@fpt.edu.vn", "izuoossqrlyjqtid"),
                 EnableSsl = true,
             };
             var from = new MailAddress("duypdth1808013@fpt.edu.vn", "Pham Dinh Duy");
@@ -115,13 +115,16 @@ namespace OfficialFinalProjectSem3
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class ApplicationRoleManager : RoleManager<ApplicationRole>
     {
-        public ApplicationRoleManager(IRoleStore<ApplicationRole, string> store) : base(store)
+        public ApplicationRoleManager(
+            RoleStore<ApplicationRole> roleStore)
+            : base(roleStore)
         {
         }
-        public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
+        public static ApplicationRoleManager Create(
+            IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
         {
-            var roleStore = new RoleStore<ApplicationRole>(context.Get<MyDBContext>());
-            return new ApplicationRoleManager(roleStore);
+            return new ApplicationRoleManager(
+                new RoleStore<ApplicationRole>(context.Get<MyDBContext>()));
         }
     }
 

@@ -17,11 +17,39 @@ namespace OfficialFinalProjectSem3.Controllers
     {
         // GET: Roles
         private MyDBContext db;
-        // private RoleManager<ApplicationRole> roleManager;
-        // private UserManager<ApplicationUser> userManager;
+        private ApplicationRoleManager _roleManager;
+        private ApplicationUserManager _userManager;
 
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().Get<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+        public ApplicationRoleManager RoleManager
+        {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
+            }
+            private set
+            {
+                _roleManager = value;
+            }
+        }
         public RolesController()
         {
+        }
+
+        public RolesController(ApplicationUserManager userManager, ApplicationRoleManager roleManager)
+        {
+            UserManager = userManager;
+            RoleManager = roleManager;
         }
 
         // GET: Roles
@@ -32,10 +60,10 @@ namespace OfficialFinalProjectSem3.Controllers
 
         public ActionResult Create(string roleName)
         {
-            // db = HttpContext.GetOwinContext().Get<MyDBContext>();
-            // var abc = db.Products.Find(1);
-            // Debug.WriteLine(abc.Name);
-            var result = HttpContext.GetOwinContext().Get<ApplicationRoleManager>().CreateAsync(new ApplicationRole(roleName));
+            db = HttpContext.GetOwinContext().Get<MyDBContext>();
+            var abc = db.Products.Find(1);
+            Debug.WriteLine(abc.Name);
+           RoleManager.CreateAsync(new ApplicationRole(roleName));
             TempData["message"] = "Add role success!";
             return Redirect("/Home");
         }
@@ -45,15 +73,15 @@ namespace OfficialFinalProjectSem3.Controllers
             Debug.WriteLine(username + " - " + roleName);
             db = HttpContext.GetOwinContext().Get<MyDBContext>();
             var user = db.Users.FirstOrDefault(u => u.UserName == username);
-            Debug.WriteLine((HttpContext.GetOwinContext().Get<ApplicationRoleManager>().RoleExists(roleName)));
+            Debug.WriteLine((RoleManager.RoleExists(roleName)));
             if (user == null)
             {
                 return HttpNotFound();
             }
 
-            if (HttpContext.GetOwinContext().Get<ApplicationRoleManager>().RoleExists(roleName))
+            if (RoleManager.RoleExists(roleName))
             {
-                HttpContext.GetOwinContext().Get<ApplicationUserManager>().AddToRole(user.Id, roleName);
+                UserManager.AddToRole(user.Id, roleName);
                 TempData["message"] = "Add role success!";
                 return Redirect("/Home");
             }
