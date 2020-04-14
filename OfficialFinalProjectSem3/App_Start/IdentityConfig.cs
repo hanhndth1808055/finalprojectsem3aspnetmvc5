@@ -13,6 +13,8 @@ using Microsoft.Owin.Security;
 using OfficialFinalProjectSem3;
 using OfficialFinalProjectSem3.Data;
 using OfficialFinalProjectSem3.Models;
+using System.Net.Mail;
+using System.Net;
 
 namespace OfficialFinalProjectSem3
 {
@@ -20,6 +22,24 @@ namespace OfficialFinalProjectSem3
     {
         public Task SendAsync(IdentityMessage message)
         {
+            var client = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                UseDefaultCredentials = false,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                Credentials = new NetworkCredential("duypdth1808013@fpt.edu.vn", "69912110"),
+                EnableSsl = true,
+            };
+            var from = new MailAddress("duypdth1808013@fpt.edu.vn", "Pham Dinh Duy");
+            var to = new MailAddress(message.Destination);
+            var mail = new MailMessage(from, to)
+            {
+                Subject = message.Subject,
+                Body = message.Body,
+                IsBodyHtml = true,
+            };
+            client.Send(mail);
             // Plug in your email service here to send an email.
             return Task.FromResult(0);
         }
