@@ -57,9 +57,9 @@ namespace OfficialFinalProjectSem3
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "533150844069299",
+               appSecret: "4d2270733bd3d0a0641a3481a9fea1e0");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
