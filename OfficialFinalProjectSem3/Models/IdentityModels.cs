@@ -16,5 +16,7 @@ namespace OfficialFinalProjectSem3.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public string Address { get; set; }
     }
 }

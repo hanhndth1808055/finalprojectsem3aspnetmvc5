@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -58,12 +59,17 @@ namespace OfficialFinalProjectSem3.Controllers
             return RedirectToRoute("/Home");
         }
 
-        public ActionResult Create(string roleName)
+        public ActionResult New()
         {
-            db = HttpContext.GetOwinContext().Get<MyDBContext>();
-            var abc = db.Products.Find(1);
-            Debug.WriteLine(abc.Name);
-           RoleManager.CreateAsync(new ApplicationRole(roleName));
+            return View();
+        }
+
+        public async Task<ActionResult> Create(ApplicationRole role)
+        {
+            // db = HttpContext.GetOwinContext().Get<MyDBContext>();
+            // var abc = db.Products.Find(1);
+            // Debug.WriteLine(abc.Name);
+           await RoleManager.CreateAsync(role);
             TempData["message"] = "Add role success!";
             return Redirect("/Home");
         }
