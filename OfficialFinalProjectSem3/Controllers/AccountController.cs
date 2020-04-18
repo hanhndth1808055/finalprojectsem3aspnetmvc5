@@ -157,13 +157,11 @@ namespace OfficialFinalProjectSem3.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Xác thực tài khoản của bạn", "Xin hãy click vào link: <a href=\"" + callbackUrl + "\"> here</a> để thực hiện việc xác thực");
-
-                    ViewBag.Message = "Hãy kiểm tra emaill xác thực trong email của bạn";
-                    return View(model);
+                    await UserManager.SendEmailAsync(user.Id, "Authentication your account now", "Please click in: <a href=\"" + callbackUrl + "\"> verify link</a> for authentication your account");
+                    TempData["Message"] = "Please check email for authentication your account";
+                    return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
@@ -171,7 +169,6 @@ namespace OfficialFinalProjectSem3.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
@@ -200,7 +197,6 @@ namespace OfficialFinalProjectSem3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
-            Debug.WriteLine("OK");
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByEmailAsync(model.Email);
@@ -209,11 +205,10 @@ namespace OfficialFinalProjectSem3.Controllers
                     // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
                 }
-
                 // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
+                string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                 await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
@@ -368,7 +363,7 @@ namespace OfficialFinalProjectSem3.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Username, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
@@ -376,7 +371,12 @@ namespace OfficialFinalProjectSem3.Controllers
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        await UserManager.SendEmailAsync(user.Id, "Authentication your account now", "Please click in: <a href=\"" + callbackUrl + "\"> verify link</a> for authentication your account");
+                        TempData["Message"] = "Please check email for authentication your account";
                         return RedirectToLocal(returnUrl);
+
                     }
                 }
                 AddErrors(result);
