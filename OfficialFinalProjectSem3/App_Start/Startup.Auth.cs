@@ -61,11 +61,11 @@ namespace OfficialFinalProjectSem3
                appId: "533150844069299",
                appSecret: "4d2270733bd3d0a0641a3481a9fea1e0");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "752777367343-plfe6n3ofjfrvgk2itnug7tvunvajls6.apps.googleusercontent.com",
+                ClientSecret = "NbJfZSer3vmDO0KX5Cc0Kc3x"
+            });
         }
     }
 }
