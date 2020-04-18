@@ -22,3 +22,10 @@ select,
 textarea {
     max-width: 280px;
 }
+.button-facebook {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    color: #069;
+    cursor: pointer;
+}
