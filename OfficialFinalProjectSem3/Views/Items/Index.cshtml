@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OfficialFinalProjectSem3.Models.Product>
+﻿@model IEnumerable<OfficialFinalProjectSem3.Models.Item>
 
 @{
     ViewBag.Title = "Index";
@@ -20,12 +20,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Thumbnails)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
         <th></th>
     </tr>
 
@@ -38,13 +32,7 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            <img width="150" height="150" src="@item.GetDefaultThumbnail()" alt="Alternate Text" class="img-thumbnail" />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
+            <img width="200" height="200" src="@item.GetDefaultThumbnail()" alt="Alternate Text" class="img-thumbnail"/>
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

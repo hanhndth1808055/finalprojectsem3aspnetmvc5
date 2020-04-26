@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
@@ -177,22 +178,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004131239292_InitialCreate.cs" />
-    <Compile Include="Migrations\202004131239292_InitialCreate.Designer.cs">
-      <DependentUpon>202004131239292_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004131312212_Authentication-remake.cs" />
-    <Compile Include="Migrations\202004131312212_Authentication-remake.Designer.cs">
-      <DependentUpon>202004131312212_Authentication-remake.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004142352470_UpdateApplicationUser.cs" />
-    <Compile Include="Migrations\202004142352470_UpdateApplicationUser.Designer.cs">
-      <DependentUpon>202004142352470_UpdateApplicationUser.cs</DependentUpon>
+    <Compile Include="Migrations\202004251750018_UpdateAll.cs" />
+    <Compile Include="Migrations\202004251750018_UpdateAll.Designer.cs">
+      <DependentUpon>202004251750018_UpdateAll.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationRole.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -261,6 +255,11 @@
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Roles\New.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Items\Create.cshtml" />
+    <Content Include="Views\Items\Delete.cshtml" />
+    <Content Include="Views\Items\Details.cshtml" />
+    <Content Include="Views\Items\Edit.cshtml" />
+    <Content Include="Views\Items\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -280,14 +279,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202004131239292_InitialCreate.resx">
-      <DependentUpon>202004131239292_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004131312212_Authentication-remake.resx">
-      <DependentUpon>202004131312212_Authentication-remake.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004142352470_UpdateApplicationUser.resx">
-      <DependentUpon>202004142352470_UpdateApplicationUser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004251750018_UpdateAll.resx">
+      <DependentUpon>202004251750018_UpdateAll.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

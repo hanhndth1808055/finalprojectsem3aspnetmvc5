@@ -11,117 +11,111 @@ using OfficialFinalProjectSem3.Models;
 
 namespace OfficialFinalProjectSem3.Controllers
 {
-    public class ProductsController : Controller
+    public class ItemsController : Controller
     {
         private MyDBContext db = new MyDBContext();
 
-        // GET: Products
+        // GET: Items
         public ActionResult Index()
         {
-            return View(db.Products.ToList());
+            return View(db.Items.ToList());
         }
 
-        // GET: Products/Details/5
+        // GET: Items/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
-            if (product == null)
+            Item item = db.Items.Find(id);
+            if (item == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            return View(item);
         }
 
-        // GET: Products/Create
+        // GET: Items/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Products/Create
+        // POST: Items/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Price,Thumbnails,CreatedAt,Status")] Product product, String[] thumbnails)
+        public ActionResult Create([Bind(Include = "Id,Name,Price,Thumbnails")] Item item, String[] thumbnails)
         {
             if (ModelState.IsValid)
             {
-                if (thumbnails != null && thumbnails.Length > 0)
+                if (!string.IsNullOrEmpty(item.Thumbnails))
                 {
-                    product.Thumbnails = string.Join(",", thumbnails);
+                    item.Thumbnails = string.Join(",", thumbnails);
                 }
-                product.CreatedAt = DateTime.Now;
-                product.Status = Product.ProductStatus.ACTIVE;
-                db.Products.Add(product);
+                db.Items.Add(item);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(product);
+            return View(item);
         }
 
-        // GET: Products/Edit/5
+        // GET: Items/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
-            if (product == null)
+            Item item = db.Items.Find(id);
+            if (item == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            return View(item);
         }
 
-        // POST: Products/Edit/5
+        // POST: Items/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Price,Thumbnails,CreatedAt,Status")] Product product, String[] thumbnails)
+        public ActionResult Edit([Bind(Include = "Id,Name,Price,Thumbnails")] Item item)
         {
             if (ModelState.IsValid)
             {
-                if (thumbnails != null && thumbnails.Length > 0)
-                {
-                    product.Thumbnails = string.Join(",", thumbnails);
-                }
-                db.Entry(product).State = EntityState.Modified;
+                db.Entry(item).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(product);
+            return View(item);
         }
 
-        // GET: Products/Delete/5
+        // GET: Items/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
-            if (product == null)
+            Item item = db.Items.Find(id);
+            if (item == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            return View(item);
         }
 
-        // POST: Products/Delete/5
+        // POST: Items/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Product product = db.Products.Find(id);
-            db.Products.Remove(product);
+            Item item = db.Items.Find(id);
+            db.Items.Remove(item);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
