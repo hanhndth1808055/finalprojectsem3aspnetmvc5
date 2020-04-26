@@ -1,5 +1,6 @@
 namespace OfficialFinalProjectSem3.Migrations
 {
+    using OfficialFinalProjectSem3.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -15,10 +16,17 @@ namespace OfficialFinalProjectSem3.Migrations
 
         protected override void Seed(OfficialFinalProjectSem3.Data.MyDBContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data.
+            context.Database.ExecuteSqlCommand("TRUNCATE TABLE Products");
+            context.Products.AddOrUpdate(new Product()
+            {
+                Id = 1,
+                Name = "Product 1",
+                Price = 2000,
+                Status = Product.ProductStatus.ACTIVE,
+                CreatedAt = DateTime.Parse("2020-01-13"),
+                Thumbnails = "image/upload/v1587835038/ma0qbjmf8jqvbhwhqycs.jpg"
+            }
+            );
         }
     }
 }
