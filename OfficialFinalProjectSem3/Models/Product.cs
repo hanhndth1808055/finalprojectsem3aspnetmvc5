@@ -21,7 +21,7 @@ namespace OfficialFinalProjectSem3.Models
         public ProductStatus Status { get; set; }
         public enum ProductStatus
         {
-            ACTIVE = 1, DEACTIVE = 0, DELETE = -1
+            ACTIVE = 1, DEACTIVE = 0, DELETE = 2
 
         }
 

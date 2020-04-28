@@ -7,13 +7,13 @@ namespace OfficialFinalProjectSem3.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class InitiaDatabse : IMigrationMetadata
+    public sealed partial class Authenticationremake : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitiaDatabse));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Authenticationremake));
         
         string IMigrationMetadata.Id
         {
-            get { return "202004280434472_InitiaDatabse"; }
+            get { return "202004131312212_Authentication-remake"; }
         }
         
         string IMigrationMetadata.Source
