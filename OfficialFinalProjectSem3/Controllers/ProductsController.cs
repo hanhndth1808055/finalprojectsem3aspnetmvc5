@@ -16,9 +16,102 @@ namespace OfficialFinalProjectSem3.Controllers
         private MyDBContext db = new MyDBContext();
 
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(string keyword, DateTime? start, DateTime? end, int? status, string sortOrder, int? page, int? limit)
         {
-            return View(db.Products.ToList());
+            int defaultLimit = 2;
+            int defaultPage = 1;
+            var itemsList = new List<SelectListItem>();
+            itemsList.AddRange(Enum.GetValues(typeof(Product.ProductStatus)).Cast<Product.ProductStatus>().Select(
+               (item, index) => new SelectListItem
+               {
+                   Text = item.ToString(),
+                   Value = (index).ToString()
+               }).ToList());
+            ViewBag.status = itemsList;
+
+            var products = db.Products.AsQueryable();
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                products = products.Where(p => p.Name.Contains(keyword));
+            }
+
+            if (start != null)
+            {
+                var startDate = start.GetValueOrDefault().Date;
+                startDate = startDate.Date + new TimeSpan(0, 0, 0);
+                products = products.Where(p => p.CreatedAt >= startDate);
+            }
+
+            if (end != null)
+            {
+                var endDate = end.GetValueOrDefault().Date;
+                endDate = endDate.Date + new TimeSpan(23, 59, 59);
+                products = products.Where(p => p.CreatedAt <= endDate);
+            }
+
+            if (status.HasValue)
+            {
+                products = products.Where(p => (int) p.Status == status.Value);
+            }
+
+            if (string.IsNullOrEmpty(sortOrder) || sortOrder.Equals("date-asc"))
+            {
+                ViewBag.DateSortParam = "date-desc";
+                ViewBag.PriceSortParam = "price-desc";
+            }
+            else if(sortOrder.Equals("date-desc"))
+            {
+                ViewBag.DateSortParam = "date-asc";
+            }
+            else if (sortOrder.Equals("price-asc"))
+            {
+                ViewBag.PriceSortParam = "price-desc";
+            }
+            else if (sortOrder.Equals("price-desc"))
+            {
+                ViewBag.PriceSortParam = "price-asc";
+            }
+
+
+            switch (sortOrder)
+            {
+                case "price-asc":
+                    products = products.OrderBy(p => p.Price);
+                    break;
+                case "price-desc":
+                    products = products.OrderByDescending(p => p.Price);
+                    break;
+                case "date-asc":
+                    products = products.OrderBy(p => p.CreatedAt);
+                    break;
+                case "date-desc":
+                    products = products.OrderByDescending(p => p.CreatedAt);
+                    break;
+                default:
+                    products = products.OrderByDescending(p => p.CreatedAt);
+                    break;
+            }
+
+            if (page.HasValue)
+            {
+                defaultPage = page.Value;
+            }
+
+            if (limit.HasValue)
+            {
+                defaultLimit = limit.Value;
+            }
+
+            int totalItem = products.Count();
+            double totalPage = Math.Ceiling((double) totalItem / defaultLimit);
+            products = products.Skip((defaultPage - 1) * defaultLimit).Take(defaultLimit);
+            ViewBag.totalItem = totalItem;
+            ViewBag.totalPage = (int) totalPage;
+            ViewBag.currentPage = defaultPage;
+            ViewBag.limit = defaultLimit;
+
+            return View(products.ToList());
         }
 
         // GET: Products/Details/5
