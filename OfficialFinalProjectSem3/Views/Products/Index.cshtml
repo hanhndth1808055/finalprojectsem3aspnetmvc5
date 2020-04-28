@@ -2,6 +2,10 @@
 
 @{
     ViewBag.Title = "Index";
+    var totalItem = (int)ViewBag.totalItem;
+    var totalPage = (int)ViewBag.totalPage;
+    var currentPage = (int)ViewBag.currentPage;
+    var limit = (int)ViewBag.limit;
 }
 
 <h2>Index</h2>
@@ -9,19 +13,51 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <form action="/Products/Index" method="get" name="search-form">
+                <div class="form-group">
+                    <label for="keyword">Search by keyword :</label>
+                    <input type="text" name="keyword" class="form-control" />
+                </div>
+                <input type="hidden" name="start" />
+                <input type="hidden" name="end" />
+                <input type="hidden" name="sortOrder" value=""/>
+                <input type="hidden" name="page" value="@currentPage"/>
+                <input type="hidden" name="limit" value="@limit"/>
+                <div class="form-group">
+                    <label for="status">Filter by status :</label>
+                    @Html.DropDownList("status", null, "---Select Status---", htmlAttributes: new { @Id = "cateList", @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Search" />
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-6">
+            <div style="float:left">
+                <label for="daterange">Search by time :</label>
+                <input type="text" name="daterange" class="form-control" />
+            </div>
+        </div>
+    </div>
+</div>
+
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            <button id="sort-price" style="background: none; border: none; color: #337ab7;padding:0;margin:0">Price</button>
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Thumbnails)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
+            <button id="sort-date" style="background: none; border: none; color: #337ab7;padding:0;margin:0">CreatedAt</button>
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Status)
@@ -29,29 +65,138 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            <img width="150" height="150" src="@item.GetDefaultThumbnail()" alt="Alternate Text" class="img-thumbnail" />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <img width="150" height="150" src="@item.GetDefaultThumbnail()" alt="Alternate Text" class="img-thumbnail" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
+<div class="row">
+    <ul class="pagination">
+        @if (currentPage > 1)
+        {
+            <li title="1" class="paginate-number"><a href="#">&laquo;</a></li>
+        }
+        @if ((currentPage - 2) > 0)
+        {
+            <li title="@(currentPage - 2)" class="paginate-number"><a href="#">@(currentPage - 2)</a></li>
+        }
+        @if ((currentPage - 1) > 0)
+        {
+            <li title="@(currentPage - 1)" class="paginate-number"><a href="#">@(currentPage - 1)</a></li>
+        }
+        <li class="active"><a href="#">@(currentPage)</a></li>
+        @if (totalPage - currentPage > 0)
+        {
+            <li title="@(currentPage + 1)" class="paginate-number"><a href="#">@(currentPage + 1)</a></li>
+        }
+        @if (totalPage - currentPage > 1)
+        {
+            <li title="@(currentPage + 2)" class="paginate-number"><a href="#">@(currentPage + 2)</a></li>
+        }
+        @if (currentPage < totalPage)
+        {
+            <li title="@(totalPage)" class="paginate-number"><a href="#">&raquo;</a></li>
+        }
+    </ul>
+</div>
+@section scripts
+{
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script>
+        var start = moment().subtract(29, 'days');
+        var end = moment();
+
+        var url_string = location.href;
+        var url = new URL(url_string);
+        var initStart = url.searchParams.get('start');
+        var initEnd = url.searchParams.get('end');
+        var keyword = url.searchParams.get('keyword');
+        var sortOrder = url.searchParams.get('sortOrder');
+        if (initStart != null && moment(initStart, 'YYYY-MM-DD', true).isValid()) {
+            start = initStart;
+            $('input[name=start]').val(start);
+        }
+        if (initEnd != null && moment(initEnd, 'YYYY-MM-DD', true).isValid()) {
+            end = initEnd;
+            $('input[name=end]').val(end);
+        }
+        if (keyword != null) {
+            $('input[name=keyword]').val(keyword);
+        }
+        if (sortOrder != null) {
+            $('input[name=sortOrder]').val(sortOrder);
+        }
+
+        $('input[name=daterange]').daterangepicker({
+            startDate: start,
+            endDate: end,
+            locale: {
+                format: 'YYYY-MM-DD'
+            },
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        });
+        $('input[name="daterange"]').on('apply.daterangepicker', function (ev, picker) {
+            var startPara = picker.startDate.format('YYYY-MM-DD');
+            var endPara = picker.endDate.format('YYYY-MM-DD');
+            $('input[name=start]').val(startPara);
+            $('input[name=end]').val(endPara);
+            alert($('input[name=start]').val());
+            alert($('input[name=end]').val());
+            $('form[name=search-form]').submit();
+        });
+        $('input[name="daterange"]').on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val('');
+            $('input[name=start]').val('');
+            $('input[name=end]').val('');
+        });
+
+        $('select[name=status]').change(function () {
+            $('form[name=search-form]').submit();
+        });
+
+        $('#sort-price').click(function () {
+            $('input[name=sortOrder]').val("@ViewBag.PriceSortParam");
+            $('form[name=search-form]').submit();
+        });
+        $('#sort-date').click(function () {
+            $('input[name=sortOrder]').val("@ViewBag.DateSortParam");
+            $('form[name=search-form]').submit();
+        });
+
+        $('.paginate-number').click(function () {
+            $('input[name=page]').val($(this).attr('title'));
+            $('form[name=search-form]').submit();
+        });
+    </script>
+}
+
