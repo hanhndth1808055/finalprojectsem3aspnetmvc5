@@ -63,8 +63,45 @@ namespace OfficialFinalProjectSem3.Migrations
                 Thumbnails = "image/upload/v1587907877/fl0wkcwe7le8tfr8gyvo.jpg"
             },
 
-            };
-            context.Products.AddOrUpdate(arrProducts);
+            };            
+                context.Categories.AddOrUpdate(x => x.Id,
+                   new Category { Id = 1, Name = "Mobile" },
+                   new Category { Id = 2, Name = "Tablet" },
+                   new Category { Id = 3, Name = "Smart watch" }
+                   );
+
+                context.WebApis.AddOrUpdate(x => x.Id,
+                    new WebApi
+                    {
+                        Id = 1,
+                        Name = "Product 1",
+                        CategoryId = 1,
+                        Price = 20000,
+                    },
+                    new WebApi
+                    {
+                        Id = 2,
+                        Name = "Product 2",
+                        CategoryId = 1,
+                        Price = 20000,
+                    },
+                    new WebApi
+                    {
+                        Id = 3,
+                        Name = "Product 3",
+                        CategoryId = 2,
+                        Price = 15,
+                    },
+                    new WebApi
+                    {
+                        Id = 4,
+                        Name = "Product 4",
+                        CategoryId = 3,
+                        Price = 10,
+                    }
+
+                    );
+                context.Products.AddOrUpdate(arrProducts);
         }
     }
 }

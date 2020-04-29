@@ -29,5 +29,9 @@ namespace OfficialFinalProjectSem3.Data
         public System.Data.Entity.DbSet<OfficialFinalProjectSem3.Models.Product> Products { get; set; }
 
         public System.Data.Entity.DbSet<OfficialFinalProjectSem3.Models.Item> Items { get; set; }
+        public System.Data.Entity.DbSet<OfficialFinalProjectSem3.Models.Category> Categories { get; set; }
+        public System.Data.Entity.DbSet<OfficialFinalProjectSem3.Models.WebApi> WebApis { get; set; }
+
+
     }
 }
