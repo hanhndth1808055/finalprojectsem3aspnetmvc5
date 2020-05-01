@@ -28,5 +28,12 @@ namespace OfficialFinalProjectSem3.Controllers
 
             return View();
         }
+
+        public ActionResult Chart()
+        {
+            ViewBag.Message = "Your chart page.";
+
+            return View();
+        }
     }
 }
