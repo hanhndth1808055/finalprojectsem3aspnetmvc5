@@ -178,6 +178,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrderDetailsController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Data\MyDBContext.cs" />
@@ -200,12 +202,26 @@
     <Compile Include="Migrations\202004251750018_UpdateAll.designer.cs">
       <DependentUpon>202004251750018_UpdateAll.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004301650313_Test.cs" />
+    <Compile Include="Migrations\202004301650313_Test.designer.cs">
+      <DependentUpon>202004301650313_Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004301702267_UpdateOrder.cs" />
+    <Compile Include="Migrations\202004301702267_UpdateOrder.Designer.cs">
+      <DependentUpon>202004301702267_UpdateOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005010729191_UpdateOrderDetail.cs" />
+    <Compile Include="Migrations\202005010729191_UpdateOrderDetail.Designer.cs">
+      <DependentUpon>202005010729191_UpdateOrderDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationRole.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -279,6 +295,16 @@
     <Content Include="Views\Items\Details.cshtml" />
     <Content Include="Views\Items\Edit.cshtml" />
     <Content Include="Views\Items\Index.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\OrderDetails\Create.cshtml" />
+    <Content Include="Views\OrderDetails\Delete.cshtml" />
+    <Content Include="Views\OrderDetails\Details.cshtml" />
+    <Content Include="Views\OrderDetails\Edit.cshtml" />
+    <Content Include="Views\OrderDetails\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -309,6 +335,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004251750018_UpdateAll.resx">
       <DependentUpon>202004251750018_UpdateAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004301650313_Test.resx">
+      <DependentUpon>202004301650313_Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004301702267_UpdateOrder.resx">
+      <DependentUpon>202004301702267_UpdateOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005010729191_UpdateOrderDetail.resx">
+      <DependentUpon>202005010729191_UpdateOrderDetail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
