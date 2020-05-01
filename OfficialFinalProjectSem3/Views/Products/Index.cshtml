@@ -8,12 +8,6 @@
     var limit = (int)ViewBag.limit;
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
 <div class="container">
     <div class="row">
         <div class="col-lg-6">
@@ -24,9 +18,9 @@
                 </div>
                 <input type="hidden" name="start" />
                 <input type="hidden" name="end" />
-                <input type="hidden" name="sortOrder" value=""/>
-                <input type="hidden" name="page" value="@currentPage"/>
-                <input type="hidden" name="limit" value="@limit"/>
+                <input type="hidden" name="sortOrder" value="" />
+                <input type="hidden" name="page" value="@currentPage" />
+                <input type="hidden" name="limit" value="@limit" />
                 <div class="form-group">
                     <label for="status">Filter by status :</label>
                     @Html.DropDownList("status", null, "ALL", htmlAttributes: new { @Id = "cateList", @class = "form-control" })
@@ -45,87 +39,106 @@
     </div>
 </div>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            <button id="sort-price" style="background: none; border: none; color: #337ab7;padding:0;margin:0">Price</button>
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Thumbnails)
-        </th>
-        <th>
-            <button id="sort-date" style="background: none; border: none; color: #337ab7;padding:0;margin:0">CreatedAt</button>
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                <img width="150" height="150" src="@item.GetDefaultThumbnail()" alt="Alternate Text" class="img-thumbnail" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
-
-</table>
-<div class="row">
-    <ul class="pagination">
-        @if (currentPage > 1)
-        {
-            <li title="1" class="paginate-number"><a href="#">&laquo;</a></li>
-        }
-        @if ((currentPage - 2) > 0)
-        {
-            <li title="@(currentPage - 2)" class="paginate-number"><a href="#">@(currentPage - 2)</a></li>
-        }
-        @if ((currentPage - 1) > 0)
-        {
-            <li title="@(currentPage - 1)" class="paginate-number"><a href="#">@(currentPage - 1)</a></li>
-        }
-        <li class="active"><a href="#">@(currentPage)</a></li>
-        @if (totalPage - currentPage > 0)
-        {
-            <li title="@(currentPage + 1)" class="paginate-number"><a href="#">@(currentPage + 1)</a></li>
-        }
-        @if (totalPage - currentPage > 1)
-        {
-            <li title="@(currentPage + 2)" class="paginate-number"><a href="#">@(currentPage + 2)</a></li>
-        }
-        @if (currentPage < totalPage)
-        {
-            <li title="@(totalPage)" class="paginate-number"><a href="#">&raquo;</a></li>
-        }
-    </ul>
-</div>
-@section scripts
+@*/////////////////////////*@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">List All product</h4>
+                        <p class="card-category"> Here is a subtitle for this table</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Name)
+                                        </th>
+                                        <th>
+                                            <button id="sort-price" style="background: none; border: none; color: #337ab7;padding:0;margin:0">Price</button>
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Thumbnails)
+                                        </th>
+                                        <th>
+                                            <button id="sort-date" style="background: none; border: none; color: #337ab7;padding:0;margin:0">CreatedAt</button>
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Status)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Price)
+                                            </td>
+                                            <td>
+                                                <img width="150" height="150" src="@item.GetDefaultThumbnail()" alt="Alternate Text" class="img-thumbnail" />
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CreatedAt)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Status)
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                            </td>
+                                        </tr>
+                                    }
+                                <tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <ul class="pagination">
+                @if (currentPage > 1)
+                {
+                    <li title="1" class="paginate-number"><a href="#">&laquo;</a></li>
+                }
+                @if ((currentPage - 2) > 0)
+                {
+                    <li title="@(currentPage - 2)" class="paginate-number"><a href="#">@(currentPage - 2)</a></li>
+                }
+                @if ((currentPage - 1) > 0)
+                {
+                    <li title="@(currentPage - 1)" class="paginate-number"><a href="#">@(currentPage - 1)</a></li>
+                }
+                <li class="active"><a href="#">@(currentPage)</a></li>
+                @if (totalPage - currentPage > 0)
+                {
+                    <li title="@(currentPage + 1)" class="paginate-number"><a href="#">@(currentPage + 1)</a></li>
+                }
+                @if (totalPage - currentPage > 1)
+                {
+                    <li title="@(currentPage + 2)" class="paginate-number"><a href="#">@(currentPage + 2)</a></li>
+                }
+                @if (currentPage < totalPage)
+                {
+                    <li title="@(totalPage)" class="paginate-number"><a href="#">&raquo;</a></li>
+                }
+            </ul>
+        </div>
+        @section scripts
 {
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+            <script>
         var start = moment().subtract(29, 'days');
         var end = moment();
 
@@ -195,6 +208,6 @@
             $('input[name=page]').val($(this).attr('title'));
             $('form[name=search-form]').submit();
         });
-    </script>
-}
+            </script>
+        }
 

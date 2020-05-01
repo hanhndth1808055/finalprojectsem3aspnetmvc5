@@ -6,12 +6,20 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="apple-touch-icon" sizes="76x76" href="Acsset/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="Acsset/img/favicon.png">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    @Styles.Render("~/Acsset/css/material-dashboard.css")
+    @*@Styles.Render("~/Acsset/demo/demo.css")*@
+    @*@Styles.Render("~/Acsset/css/mystyle.css")*@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <div class="wrapper ">
+        @Html.Partial("Menu")
+        @*<div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -28,18 +36,248 @@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
+        </div>*@
+        <div class="main-panel">
+            <!-- Navbar -->
+            @Html.Partial("header")
+            <div class="content">
+                
+                    @RenderBody()
+               
+            </div>
+            @Html.Partial("footer")
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+    @Html.Partial("EndLastPage")
+    @*<div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>*@
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    @Scripts.Render("~/Acsset/js/core/jquery.min.js")
+    @Scripts.Render("~/Acsset/js/core/popper.min.js")
+    @Scripts.Render("~/Acsset/js/core/bootstrap-material-design.min.js")
+    @Scripts.Render("~/Acsset/js/plugins/perfect-scrollbar.jquery.min.js")
+    <!-- Plugin for the momentJs  -->
+    @Scripts.Render("~/Acsset/js/plugins/moment.min.js")
+    <!--  Plugin for Sweet Alert -->
+    @Scripts.Render("~/Acsset/js/plugins/sweetalert2.js")
+    <!-- Forms Validations Plugin -->
+    @Scripts.Render("~/Acsset/js/plugins/jquery.validate.min.js")
+    <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+    @Scripts.Render("~/Acsset/js/plugins/jquery.bootstrap-wizard.js")
+    <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+    @Scripts.Render("~/Acsset/js/plugins/bootstrap-selectpicker.js")
+    <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+    @Scripts.Render("~/Acsset/js/plugins/bootstrap-datetimepicker.min.js")
+    <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
+    @Scripts.Render("~/Acsset/js/plugins/jquery.dataTables.min.js")
+    <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+    @Scripts.Render("~/Acsset/js/plugins/bootstrap-tagsinput.js")
+    <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+    @Scripts.Render("~/Acsset/js/plugins/jasny-bootstrap.min.js")
+    <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
+    @Scripts.Render("~/Acsset/js/plugins/fullcalendar.min.js")
+    <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+    @Scripts.Render("~/Acsset/js/plugins/jquery-jvectormap.js")
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    @Scripts.Render("~/Acsset/js/plugins/nouislider.min.js")
+    <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js" >
+    <!-- Library for adding dinamically elements -->
+    @Scripts.Render("~/Acsset/js/plugins/arrive.min.js")
+    <!--  Google Maps Plugin    -->
+    @Scripts.Render("~/https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE")
+    <!-- Chartist JS -->
+    @Scripts.Render("~/Acsset/js/plugins/chartist.min.js")
+    <!--  Notifications Plugin    -->
+    @Scripts.Render("~/Acsset/js/plugins/bootstrap-notify.js")
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    @Scripts.Render("~/Acsset/js/material-dashboard.js?v=2.1.2")
+    
+    <script>
+        $(document).ready(function () {
+            $().ready(function () {
+                $sidebar = $('.sidebar');
+
+                $sidebar_img_container = $sidebar.find('.sidebar-background');
+
+                $full_page = $('.full-page');
+
+                $sidebar_responsive = $('body > .navbar-collapse');
+
+                window_width = $(window).width();
+
+                fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+
+                if (window_width > 767 && fixed_plugin_open == 'Dashboard') {
+                    if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
+                        $('.fixed-plugin .dropdown').addClass('open');
+                    }
+
+                }
+
+                $('.fixed-plugin a').click(function (event) {
+                    // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
+                    if ($(this).hasClass('switch-trigger')) {
+                        if (event.stopPropagation) {
+                            event.stopPropagation();
+                        } else if (window.event) {
+                            window.event.cancelBubble = true;
+                        }
+                    }
+                });
+
+                $('.fixed-plugin .active-color span').click(function () {
+                    $full_page_background = $('.full-page-background');
+
+                    $(this).siblings().removeClass('active');
+                    $(this).addClass('active');
+
+                    var new_color = $(this).data('color');
+
+                    if ($sidebar.length != 0) {
+                        $sidebar.attr('data-active-color', new_color);
+                    }
+
+                    if ($full_page.length != 0) {
+                        $full_page.attr('filter-color', new_color);
+                    }
+
+                    if ($sidebar_responsive.length != 0) {
+                        $sidebar_responsive.attr('data-color', new_color);
+                    }
+                });
+
+                $('.fixed-plugin .background-color .badge').click(function () {
+                    $(this).siblings().removeClass('active');
+                    $(this).addClass('active');
+
+                    var new_color = $(this).data('background-color');
+
+                    if ($sidebar.length != 0) {
+                        $sidebar.attr('color', new_color);
+                    }
+                });
+
+                $('.fixed-plugin .img-holder').click(function () {
+                    $full_page_background = $('.full-page-background');
+
+                    $(this).parent('li').siblings().removeClass('active');
+                    $(this).parent('li').addClass('active');
+
+
+                    var new_image = $(this).find("img").attr('src');
+
+                    if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+                        $sidebar_img_container.fadeOut('fast', function () {
+                            $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+                            $sidebar_img_container.fadeIn('fast');
+                        });
+                    }
+
+                    if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+                        var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+                        $full_page_background.fadeOut('fast', function () {
+                            $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+                            $full_page_background.fadeIn('fast');
+                        });
+                    }
+
+                    if ($('.switch-sidebar-image input:checked').length == 0) {
+                        var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
+                        var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+                        $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+                        $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+                    }
+
+                    if ($sidebar_responsive.length != 0) {
+                        $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
+                    }
+                });
+
+                $('.switch-sidebar-image input').change(function () {
+                    $full_page_background = $('.full-page-background');
+
+                    $input = $(this);
+
+                    if ($input.is(':checked')) {
+                        if ($sidebar_img_container.length != 0) {
+                            $sidebar_img_container.fadeIn('fast');
+                            $sidebar.attr('data-image', '#');
+                        }
+
+                        if ($full_page_background.length != 0) {
+                            $full_page_background.fadeIn('fast');
+                            $full_page.attr('data-image', '#');
+                        }
+
+                        background_image = true;
+                    } else {
+                        if ($sidebar_img_container.length != 0) {
+                            $sidebar.removeAttr('data-image');
+                            $sidebar_img_container.fadeOut('fast');
+                        }
+
+                        if ($full_page_background.length != 0) {
+                            $full_page.removeAttr('data-image', '#');
+                            $full_page_background.fadeOut('fast');
+                        }
+
+                        background_image = false;
+                    }
+                });
+
+                $('.switch-sidebar-mini input').change(function () {
+                    $body = $('body');
+
+                    $input = $(this);
+
+                    if (md.misc.sidebar_mini_active == true) {
+                        $('body').removeClass('sidebar-mini');
+                        md.misc.sidebar_mini_active = false;
+
+                        $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+
+                    } else {
+
+                        $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
+
+                        setTimeout(function () {
+                            $('body').addClass('sidebar-mini');
+
+                            md.misc.sidebar_mini_active = true;
+                        }, 300);
+                    }
+
+                    // we simulate the window Resize so the charts will get updated in realtime.
+                    var simulateWindowResize = setInterval(function () {
+                        window.dispatchEvent(new Event('resize'));
+                    }, 180);
+
+                    // we stop the simulation of Window Resize after the animations are completed
+                    setTimeout(function () {
+                        clearInterval(simulateWindowResize);
+                    }, 1000);
+
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Javascript method's body can be found in Acsset/js/demos.js
+            md.initDashboardPageCharts();
+
+        });
+    </script>
 </body>
 </html>

@@ -10,7 +10,7 @@ namespace OfficialFinalProjectSem3.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(OfficialFinalProjectSem3.Data.MyDBContext context)

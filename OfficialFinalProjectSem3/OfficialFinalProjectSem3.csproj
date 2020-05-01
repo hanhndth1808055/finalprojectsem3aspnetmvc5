@@ -175,6 +175,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\DasboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -183,22 +184,6 @@
     <Compile Include="Data\MyDBContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004131239292_InitialCreate.cs" />
-    <Compile Include="Migrations\202004131239292_InitialCreate.designer.cs">
-      <DependentUpon>202004131239292_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004131312212_Authentication-remake.cs" />
-    <Compile Include="Migrations\202004131312212_Authentication-remake.designer.cs">
-      <DependentUpon>202004131312212_Authentication-remake.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004142352470_UpdateApplicationUser.cs" />
-    <Compile Include="Migrations\202004142352470_UpdateApplicationUser.designer.cs">
-      <DependentUpon>202004142352470_UpdateApplicationUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004251750018_UpdateAll.cs" />
-    <Compile Include="Migrations\202004251750018_UpdateAll.designer.cs">
-      <DependentUpon>202004251750018_UpdateAll.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -211,6 +196,50 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Acsset\css\material-dashboard-rtl.css" />
+    <Content Include="Acsset\css\material-dashboard.css" />
+    <Content Include="Acsset\css\material-dashboard.min.css" />
+    <Content Include="Acsset\css\mystyle.css" />
+    <Content Include="Acsset\demo\demo.css" />
+    <Content Include="Acsset\demo\demo.js" />
+    <Content Include="Acsset\img\apple-icon.png" />
+    <Content Include="Acsset\img\bg2.jpg" />
+    <Content Include="Acsset\img\city-profile.jpg" />
+    <Content Include="Acsset\img\city.jpg" />
+    <Content Include="Acsset\img\cover.jpg" />
+    <Content Include="Acsset\img\faces\avatar.jpg" />
+    <Content Include="Acsset\img\faces\card-profile1-square.jpg" />
+    <Content Include="Acsset\img\faces\card-profile2-square.jpg" />
+    <Content Include="Acsset\img\faces\marc.jpg" />
+    <Content Include="Acsset\img\favicon.png" />
+    <Content Include="Acsset\img\mask.png" />
+    <Content Include="Acsset\img\new_logo.png" />
+    <Content Include="Acsset\img\sidebar-1.jpg" />
+    <Content Include="Acsset\img\sidebar-2.jpg" />
+    <Content Include="Acsset\img\sidebar-3.jpg" />
+    <Content Include="Acsset\img\sidebar-4.jpg" />
+    <Content Include="Acsset\js\core\bootstrap-material-design.min.js" />
+    <Content Include="Acsset\js\core\jquery.min.js" />
+    <Content Include="Acsset\js\core\popper.min.js" />
+    <Content Include="Acsset\js\material-dashboard.js" />
+    <Content Include="Acsset\js\material-dashboard.min.js" />
+    <Content Include="Acsset\js\plugins\arrive.min.js" />
+    <Content Include="Acsset\js\plugins\bootstrap-datetimepicker.min.js" />
+    <Content Include="Acsset\js\plugins\bootstrap-notify.js" />
+    <Content Include="Acsset\js\plugins\bootstrap-selectpicker.js" />
+    <Content Include="Acsset\js\plugins\bootstrap-tagsinput.js" />
+    <Content Include="Acsset\js\plugins\chartist.min.js" />
+    <Content Include="Acsset\js\plugins\fullcalendar.min.js" />
+    <Content Include="Acsset\js\plugins\jasny-bootstrap.min.js" />
+    <Content Include="Acsset\js\plugins\jquery-jvectormap.js" />
+    <Content Include="Acsset\js\plugins\jquery.bootstrap-wizard.js" />
+    <Content Include="Acsset\js\plugins\jquery.dataTables.min.js" />
+    <Content Include="Acsset\js\plugins\jquery.tagsinput.js" />
+    <Content Include="Acsset\js\plugins\jquery.validate.min.js" />
+    <Content Include="Acsset\js\plugins\moment.min.js" />
+    <Content Include="Acsset\js\plugins\nouislider.min.js" />
+    <Content Include="Acsset\js\plugins\perfect-scrollbar.jquery.min.js" />
+    <Content Include="Acsset\js\plugins\sweetalert2.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -222,6 +251,172 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Acsset\css\material-dashboard.css.map" />
+    <Content Include="Acsset\js\material-dashboard.js.map" />
+    <Content Include="Acsset\scss\material-dashboard.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\bootstrap-grid.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\bootstrap-reboot.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\bootstrap.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_alert.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_background-variant.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_badge.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_border-radius.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_box-shadow.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_breakpoints.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_buttons.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_caret.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_clearfix.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_float.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_forms.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_gradients.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_grid-framework.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_grid.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_hover.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_image.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_list-group.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_lists.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_nav-divider.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_navbar-align.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_pagination.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_reset-text.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_resize.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_screen-reader.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_size.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_table-row.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_text-emphasis.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_text-hide.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_text-truncate.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_transition.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\mixins\_visibility.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\utilities\_align.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\utilities\_background.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\utilities\_borders.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\utilities\_clearfix.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\utilities\_display.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\utilities\_embed.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\utilities\_flex.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\utilities\_float.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\utilities\_position.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\utilities\_screenreaders.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\utilities\_sizing.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\utilities\_spacing.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\utilities\_text.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\utilities\_visibility.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_alert.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_badge.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_breadcrumb.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_button-group.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_buttons.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_card.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_carousel.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_close.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_code.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_custom-forms.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_dropdown.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_forms.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_functions.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_grid.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_images.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_input-group.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_jumbotron.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_list-group.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_media.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_mixins.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_modal.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_nav.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_navbar.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_pagination.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_popover.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_print.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_progress.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_reboot.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_root.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_tables.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_tooltip.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_transitions.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_type.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_utilities.scss" />
+    <Content Include="Acsset\scss\material-dashboard\bootstrap\scss\_variables.scss" />
+    <Content Include="Acsset\scss\material-dashboard\cards\_card-plain.scss" />
+    <Content Include="Acsset\scss\material-dashboard\cards\_card-profile.scss" />
+    <Content Include="Acsset\scss\material-dashboard\cards\_card-stats.scss" />
+    <Content Include="Acsset\scss\material-dashboard\mixins\_alert.scss" />
+    <Content Include="Acsset\scss\material-dashboard\mixins\_animations.scss" />
+    <Content Include="Acsset\scss\material-dashboard\mixins\_breakpoints.scss" />
+    <Content Include="Acsset\scss\material-dashboard\mixins\_buttons.scss" />
+    <Content Include="Acsset\scss\material-dashboard\mixins\_chartist.scss" />
+    <Content Include="Acsset\scss\material-dashboard\mixins\_colored-shadows.scss" />
+    <Content Include="Acsset\scss\material-dashboard\mixins\_drawer.scss" />
+    <Content Include="Acsset\scss\material-dashboard\mixins\_forms.scss" />
+    <Content Include="Acsset\scss\material-dashboard\mixins\_hover.scss" />
+    <Content Include="Acsset\scss\material-dashboard\mixins\_layout.scss" />
+    <Content Include="Acsset\scss\material-dashboard\mixins\_navbar-colors.scss" />
+    <Content Include="Acsset\scss\material-dashboard\mixins\_navs.scss" />
+    <Content Include="Acsset\scss\material-dashboard\mixins\_sidebar-color.scss" />
+    <Content Include="Acsset\scss\material-dashboard\mixins\_transparency.scss" />
+    <Content Include="Acsset\scss\material-dashboard\mixins\_type.scss" />
+    <Content Include="Acsset\scss\material-dashboard\mixins\_utilities.scss" />
+    <Content Include="Acsset\scss\material-dashboard\mixins\_variables.scss" />
+    <Content Include="Acsset\scss\material-dashboard\mixins\_vendor-prefixes.scss" />
+    <Content Include="Acsset\scss\material-dashboard\plugins\_animate.scss" />
+    <Content Include="Acsset\scss\material-dashboard\plugins\_chartist.scss" />
+    <Content Include="Acsset\scss\material-dashboard\plugins\_perfect-scrollbar.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_body.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_bootstrap-material-design-base.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_bootstrap-material-design.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_brand.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_buttons.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_card.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_code.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_colors-map.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_colors.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_custom-forms.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_drawer.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_dropdown.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_forms.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_layout.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_list-group.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_menu.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_modals.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_nav.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_pagination.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_shadow.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_snackbar.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_spacing.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_state.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_tables.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_tooltip.scss" />
+    <Content Include="Acsset\scss\material-dashboard\variables\_type.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_alerts.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_buttons.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_cards.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_checkboxes.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_core-bootstrap.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_dropdown.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_example-pages.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_fixed-plugin.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_footers.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_forms.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_headers.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_images.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_info-areas.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_input-group.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_misc.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_mixins.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_navbar.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_popover.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_popups.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_radios.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_responsive.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_ripples.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_sidebar-and-main-panel.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_social-buttons.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_tables.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_tabs.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_togglebutton.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_tooltip.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_type.scss" />
+    <Content Include="Acsset\scss\material-dashboard\_variables.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -279,6 +474,14 @@
     <Content Include="Views\Items\Details.cshtml" />
     <Content Include="Views\Items\Edit.cshtml" />
     <Content Include="Views\Items\Index.cshtml" />
+    <Content Include="Views\Shared\Menu.cshtml" />
+    <Content Include="Views\Shared\header.cshtml" />
+    <Content Include="Views\Shared\footer.cshtml" />
+    <Content Include="Views\Shared\Dasboard.cshtml" />
+    <Content Include="Views\Shared\User.cshtml" />
+    <Content Include="Views\Shared\Tables.cshtml" />
+    <Content Include="Views\Dasboard\index.cshtml" />
+    <Content Include="Views\Shared\EndLastPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -296,20 +499,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202004131239292_InitialCreate.resx">
-      <DependentUpon>202004131239292_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004131312212_Authentication-remake.resx">
-      <DependentUpon>202004131312212_Authentication-remake.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004142352470_UpdateApplicationUser.resx">
-      <DependentUpon>202004142352470_UpdateApplicationUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004251750018_UpdateAll.resx">
-      <DependentUpon>202004251750018_UpdateAll.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
