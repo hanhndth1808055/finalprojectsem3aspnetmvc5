@@ -13,11 +13,12 @@ namespace OfficialFinalProjectSem3.Models
         [ForeignKey("User")]
         public string UserID { get; set; }
         public virtual ApplicationUser User { get; set; }
-        [Display(Name = "Created At")]
         [Required]
         public double Total { get; set; }
+        [Display(Name = "Created At")]
         public DateTime CreatedAt { get; set; }
         public OrderStatus Status { get; set; }
+        [Display(Name = "Finished At")]
         public DateTime FinishedAt { get; set; }
         public enum OrderStatus
         {

@@ -141,7 +141,6 @@
             <script>
         var start = moment().subtract(29, 'days');
         var end = moment();
-
         var url_string = location.href;
         var url = new URL(url_string);
         var initStart = url.searchParams.get('start');
@@ -162,7 +161,6 @@
         if (sortOrder != null) {
             $('input[name=sortOrder]').val(sortOrder);
         }
-
         $('input[name=daterange]').daterangepicker({
             startDate: start,
             endDate: end,
@@ -190,11 +188,9 @@
             $('input[name=start]').val('');
             $('input[name=end]').val('');
         });
-
         $('select[name=status]').change(function () {
             $('form[name=search-form]').submit();
         });
-
         $('#sort-price').click(function () {
             $('input[name=sortOrder]').val("@ViewBag.PriceSortParam");
             $('form[name=search-form]').submit();
@@ -203,11 +199,9 @@
             $('input[name=sortOrder]').val("@ViewBag.DateSortParam");
             $('form[name=search-form]').submit();
         });
-
         $('.paginate-number').click(function () {
             $('input[name=page]').val($(this).attr('title'));
             $('form[name=search-form]').submit();
         });
             </script>
         }
-

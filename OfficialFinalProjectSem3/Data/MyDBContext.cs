@@ -28,8 +28,6 @@ namespace OfficialFinalProjectSem3.Data
 
         public System.Data.Entity.DbSet<OfficialFinalProjectSem3.Models.Product> Products { get; set; }
 
-        public System.Data.Entity.DbSet<OfficialFinalProjectSem3.Models.Item> Items { get; set; }
-
         public System.Data.Entity.DbSet<OfficialFinalProjectSem3.Models.Order> Orders { get; set; }
 
         public System.Data.Entity.DbSet<OfficialFinalProjectSem3.Models.OrderDetail> OrderDetails { get; set; }
