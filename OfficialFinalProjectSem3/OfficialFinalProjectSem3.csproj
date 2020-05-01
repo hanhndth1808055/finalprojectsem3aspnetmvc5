@@ -176,7 +176,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderDetailsController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
@@ -186,39 +185,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004131239292_InitialCreate.cs" />
-    <Compile Include="Migrations\202004131239292_InitialCreate.designer.cs">
-      <DependentUpon>202004131239292_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004131312212_Authentication-remake.cs" />
-    <Compile Include="Migrations\202004131312212_Authentication-remake.designer.cs">
-      <DependentUpon>202004131312212_Authentication-remake.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004142352470_UpdateApplicationUser.cs" />
-    <Compile Include="Migrations\202004142352470_UpdateApplicationUser.designer.cs">
-      <DependentUpon>202004142352470_UpdateApplicationUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004251750018_UpdateAll.cs" />
-    <Compile Include="Migrations\202004251750018_UpdateAll.designer.cs">
-      <DependentUpon>202004251750018_UpdateAll.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004301650313_Test.cs" />
-    <Compile Include="Migrations\202004301650313_Test.designer.cs">
-      <DependentUpon>202004301650313_Test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004301702267_UpdateOrder.cs" />
-    <Compile Include="Migrations\202004301702267_UpdateOrder.Designer.cs">
-      <DependentUpon>202004301702267_UpdateOrder.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005010729191_UpdateOrderDetail.cs" />
-    <Compile Include="Migrations\202005010729191_UpdateOrderDetail.Designer.cs">
-      <DependentUpon>202005010729191_UpdateOrderDetail.cs</DependentUpon>
+    <Compile Include="Migrations\202005011556502_Initial.cs" />
+    <Compile Include="Migrations\202005011556502_Initial.Designer.cs">
+      <DependentUpon>202005011556502_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationRole.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
@@ -290,11 +264,6 @@
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Roles\New.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Items\Create.cshtml" />
-    <Content Include="Views\Items\Delete.cshtml" />
-    <Content Include="Views\Items\Details.cshtml" />
-    <Content Include="Views\Items\Edit.cshtml" />
-    <Content Include="Views\Items\Index.cshtml" />
     <Content Include="Views\Orders\Create.cshtml" />
     <Content Include="Views\Orders\Delete.cshtml" />
     <Content Include="Views\Orders\Details.cshtml" />
@@ -325,26 +294,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202004131239292_InitialCreate.resx">
-      <DependentUpon>202004131239292_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004131312212_Authentication-remake.resx">
-      <DependentUpon>202004131312212_Authentication-remake.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004142352470_UpdateApplicationUser.resx">
-      <DependentUpon>202004142352470_UpdateApplicationUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004251750018_UpdateAll.resx">
-      <DependentUpon>202004251750018_UpdateAll.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004301650313_Test.resx">
-      <DependentUpon>202004301650313_Test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004301702267_UpdateOrder.resx">
-      <DependentUpon>202004301702267_UpdateOrder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005010729191_UpdateOrderDetail.resx">
-      <DependentUpon>202005010729191_UpdateOrderDetail.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202005011556502_Initial.resx">
+      <DependentUpon>202005011556502_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
