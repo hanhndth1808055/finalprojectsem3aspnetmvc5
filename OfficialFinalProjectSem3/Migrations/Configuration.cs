@@ -5,10 +5,8 @@ namespace OfficialFinalProjectSem3.Migrations
     using OfficialFinalProjectSem3.Data;
     using OfficialFinalProjectSem3.Models;
     using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Data.Entity.Validation;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<MyDBContext>
     {
@@ -19,7 +17,8 @@ namespace OfficialFinalProjectSem3.Migrations
 
         protected override void Seed(MyDBContext context)
         {
-            SeedingUserAndRole(context);
+            SeedingRole(context);
+            SeedingUser(context);
             SeedingProduct(context);
             SeedingOrder(context);
             SeedingOrderDetail(context);
@@ -36,53 +35,58 @@ namespace OfficialFinalProjectSem3.Migrations
             //context.Database.ExecuteSqlCommand("TRUNCATE TABLE Products");
         }
 
-        private void SeedingUserAndRole(MyDBContext context)
+        private void SeedingRole(MyDBContext context)
+        {
+            using (var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context)))
+            {
+                if (!roleManager.RoleExists("Admin"))
+                {
+                    roleManager.Create(new IdentityRole("Admin"));
+                }
+                if (!roleManager.RoleExists("Customer"))
+                {
+                    roleManager.Create(new IdentityRole("Customer"));
+                }
+                if (!roleManager.RoleExists("Staff"))
+                {
+                    roleManager.Create(new IdentityRole("Staff"));
+                }
+            }
+            context.SaveChanges();
+        }
+
+        private void SeedingUser(MyDBContext context)
         {
             try
             {
                 using (var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context)))
                 {
-                    using (var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context)))
+                    var admin = new ApplicationUser() { Id = "Admin1", UserName = "Admin1", Email = "admin1@gmail.com", PhoneNumber = "0362655898" };
+                    if (userManager.Create(admin, "password123") != IdentityResult.Success)
                     {
-                        if (!roleManager.RoleExists("Admin"))
-                        {
-                            roleManager.Create(new IdentityRole("Admin"));
-                        }
-                        if (!roleManager.RoleExists("Customer"))
-                        {
-                            roleManager.Create(new IdentityRole("Customer"));
-                        }
-                        if (!roleManager.RoleExists("Staff"))
-                        {
-                            roleManager.Create(new IdentityRole("Staff"));
-                        }
-                        var admin = new ApplicationUser() { Id = "Admin1", UserName = "Admin1", Email = "admin1@gmail.com", PhoneNumber = "0362655898" };
-                        if (userManager.Create(admin, "password123") != IdentityResult.Success)
-                        {
-                            throw new Exception("Create Failed");
-                        }
-                        var customer = new ApplicationUser() { Id = "Customer1", UserName = "Customer1", Email = "Customer1@gmail.com", PhoneNumber = "0362655891" };
-                        if (userManager.Create(customer, "password123") != IdentityResult.Success)
-                        {
-                            throw new Exception("Create Failed");
-                        }
-                        var customer2 = new ApplicationUser() { Id = "Customer2", UserName = "Customer2", Email = "Customer2@gmail.com", PhoneNumber = "0362655892" };
-                        if (userManager.Create(customer2, "password123") != IdentityResult.Success)
-                        {
-                            throw new Exception("Create Failed");
-                        }
-                        var staff = new ApplicationUser() { Id = "Staff1", UserName = "Staff1", Email = "Staff1@gmail.com", PhoneNumber = "0362655893" };
-                        if (userManager.Create(staff, "password123") != IdentityResult.Success)
-                        {
-                            throw new Exception("Create Failed");
-                        }
-                        //ADD ROLE
-                        userManager.AddToRole(admin.Id, "Admin");
-                        userManager.AddToRole(customer.Id, "Customer");
-                        userManager.AddToRole(customer2.Id, "Customer");
-                        userManager.AddToRole(staff.Id, "Staff");
-                        context.SaveChanges();
+                        throw new Exception("Create Failed");
                     }
+                    var customer1 = new ApplicationUser() { Id = "Customer1", UserName = "Customer1", Email = "Customer1@gmail.com", PhoneNumber = "0362655891" };
+                    if (userManager.Create(customer1, "password123") != IdentityResult.Success)
+                    {
+                        throw new Exception("Create Failed");
+                    }
+                    var customer2 = new ApplicationUser() { Id = "Customer2", UserName = "Customer2", Email = "Customer2@gmail.com", PhoneNumber = "0362655892" };
+                    if (userManager.Create(customer2, "password123") != IdentityResult.Success)
+                    {
+                        throw new Exception("Create Failed");
+                    }
+                    var staff = new ApplicationUser() { Id = "Staff1", UserName = "Staff1", Email = "Staff1@gmail.com", PhoneNumber = "0362655893" };
+                    if (userManager.Create(staff, "password123") != IdentityResult.Success)
+                    {
+                        throw new Exception("Create Failed");
+                    }
+                    //ADD ROLE
+                    userManager.AddToRole(admin.Id, "Admin");
+                    userManager.AddToRole(customer1.Id, "Customer");
+                    userManager.AddToRole(customer2.Id, "Customer");
+                    userManager.AddToRole(staff.Id, "Staff");
+                    context.SaveChanges();
                 }
             }
             catch (DbEntityValidationException dbEx)
@@ -164,8 +168,8 @@ namespace OfficialFinalProjectSem3.Migrations
                     FinishedAt = DateTime.Parse("2019-01-17"),
                     Status = Order.OrderStatus.FINISH,
                     Total = 20000,
-                    UserID = "Customer",
-                    User = context.Users.Where(p => p.Id == "Customer").FirstOrDefault()
+                    UserID = "Customer1",
+                    User = context.Users.Find("Customer1")
                 },
                 new Order()
                 {
@@ -175,7 +179,7 @@ namespace OfficialFinalProjectSem3.Migrations
                     Status = Order.OrderStatus.CANCEL,
                     Total = 26000,
                     UserID = "Customer2",
-                    User = context.Users.Where(p => p.Id == "Customer2").FirstOrDefault()
+                    User = context.Users.Find("Customer2")
                 },
             };
             context.Orders.AddOrUpdate(arrOrders);
@@ -192,7 +196,7 @@ namespace OfficialFinalProjectSem3.Migrations
                     Order = context.Orders.Find(1),
                     ProductID = 1,
                     Quantity = 2,
-                    Product = context.Products.Where(p => p.Id == 1).FirstOrDefault()
+                    Product = context.Products.Find(1)
                 }
             };
             context.OrderDetails.AddOrUpdate(arrOrderDetails);
