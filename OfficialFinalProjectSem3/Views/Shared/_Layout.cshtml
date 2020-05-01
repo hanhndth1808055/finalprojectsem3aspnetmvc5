@@ -8,10 +8,11 @@
     @Scripts.Render("~/bundles/modernizr")
     <link rel="apple-touch-icon" sizes="76x76" href="Acsset/img/apple-icon.png">
     <link rel="icon" type="image/png" href="Acsset/img/favicon.png">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    @Styles.Render("~/Acsset/css/material-dashboard.css")
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    @Styles.Render("~/Acsset/css/material-dashboard.css?v=2.1.2")
     @*@Styles.Render("~/Acsset/demo/demo.css")*@
     @*@Styles.Render("~/Acsset/css/mystyle.css")*@
 
@@ -20,31 +21,31 @@
     <div class="wrapper ">
         @Html.Partial("Menu")
         @*<div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Chart", "Chart", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>*@
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Chart", "Chart", "Home")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>*@
         <div class="main-panel">
             <!-- Navbar -->
             @Html.Partial("header")
             <div class="content">
-                
-                    @RenderBody()
-               
+
+                @RenderBody()
+
             </div>
             @Html.Partial("footer")
         </div>
@@ -58,9 +59,8 @@
             </footer>
         </div>*@
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
+    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")*@
     @Scripts.Render("~/Acsset/js/core/jquery.min.js")
     @Scripts.Render("~/Acsset/js/core/popper.min.js")
     @Scripts.Render("~/Acsset/js/core/bootstrap-material-design.min.js")
@@ -90,7 +90,7 @@
     <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
     @Scripts.Render("~/Acsset/js/plugins/nouislider.min.js")
     <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js">
     <!-- Library for adding dinamically elements -->
     @Scripts.Render("~/Acsset/js/plugins/arrive.min.js")
     <!--  Google Maps Plugin    -->
@@ -101,7 +101,7 @@
     @Scripts.Render("~/Acsset/js/plugins/bootstrap-notify.js")
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     @Scripts.Render("~/Acsset/js/material-dashboard.js?v=2.1.2")
-    
+
     <script>
         $(document).ready(function () {
             $().ready(function () {
@@ -280,5 +280,6 @@
 
         });
     </script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>

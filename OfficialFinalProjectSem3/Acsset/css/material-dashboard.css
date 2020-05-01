@@ -14,7 +14,7 @@
  */
 /*     brand Colors              */
 .card {
-    font-size: .875rem;
+    font-size: 14px;
 }
 
 *,
@@ -4830,6 +4830,7 @@ tbody.collapse.show {
 
 .card-title {
     margin-bottom: 0.75rem;
+    font-size:16px;
 }
 
 .card-subtitle {
@@ -9340,6 +9341,7 @@ button.bg-dark:focus {
 
 .text-primary {
     color: #2196f3 !important;
+    font-size: 16px;
 }
 
 a.text-primary:hover,
@@ -17373,6 +17375,7 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
 
     .card .card-category:not([class*="text-"]) {
         color: #999999;
+        font-size:11px;
     }
 
     .card .card-category {
@@ -17517,9 +17520,8 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
 .card.bg-primary,
 .card.card-rotate.bg-primary .front,
 .card.card-rotate.bg-primary .back {
-    background: linear-gradient(60deg, #6c757d, #d2d2d2);
+    background: linear-gradient(60deg, #ab47bc, #8e24aa);
 }
-
 
 .card .card-header-info .card-icon,
 .card .card-header-info .card-text,
@@ -17569,7 +17571,7 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
 .card .card-header-primary .card-icon,
 .card .card-header-primary:not(.card-header-icon):not(.card-header-text),
 .card .card-header-primary .card-text {
-    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #999999;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
 }
 
 .card .card-header-danger .card-icon,
@@ -17731,6 +17733,7 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
 
         .card .card-header.card-header-text {
             display: inline-block;
+            font-size:14px;
         }
 
             .card .card-header.card-header-text:after {
@@ -17844,9 +17847,9 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
             }
 
     .card [class*="card-header-"] {
-        /* margin: 0px 15px 0; */
-        /* padding: 0; */
-        /* position: relative; */
+        margin: 0px 15px 0;
+        padding: 0;
+        position: relative;
     }
 
         .card [class*="card-header-"] .card-title + .card-category {
@@ -18049,7 +18052,6 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
 
     .card-stats .card-header .card-category:not([class*="text-"]) {
         color: #999999;
-        font-size: 14px;
     }
 
 .card-stats .card-header + .card-footer {

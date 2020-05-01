@@ -18,7 +18,7 @@ namespace OfficialFinalProjectSem3.Controllers
         // GET: Products
         public ActionResult Index(string keyword, DateTime? start, DateTime? end, int? status, string sortOrder, int? page, int? limit)
         {
-            int defaultLimit = 2;
+            int defaultLimit = 10;
             int defaultPage = 1;
             var itemsList = new List<SelectListItem>();
             itemsList.AddRange(Enum.GetValues(typeof(Product.ProductStatus)).Cast<Product.ProductStatus>().Select(
