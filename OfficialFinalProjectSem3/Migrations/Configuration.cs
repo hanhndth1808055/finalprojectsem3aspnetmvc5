@@ -8,11 +8,11 @@ namespace OfficialFinalProjectSem3.Migrations
     using System.Data.Entity.Migrations;
     using System.Data.Entity.Validation;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<MyDBContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<OfficialFinalProjectSem3.Data.MyDBContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(MyDBContext context)
@@ -187,7 +187,7 @@ namespace OfficialFinalProjectSem3.Migrations
 
         private void SeedingOrderDetail(MyDBContext context)
         {
-            OrderDetail[] arrOrderDetails = 
+            OrderDetail[] arrOrderDetails =
             {
                 new OrderDetail()
                 {
@@ -203,4 +203,3 @@ namespace OfficialFinalProjectSem3.Migrations
         }
     }
 }
-

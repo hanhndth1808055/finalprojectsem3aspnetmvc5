@@ -11,6 +11,7 @@ namespace OfficialFinalProjectSem3.Models
     {
         [Required]
         public int Id { get; set; }
+        [Display(Name = "Product Name")]
         [Required]
         public string Name { get; set; }
         [Required]
