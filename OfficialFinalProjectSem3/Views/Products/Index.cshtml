@@ -12,9 +12,9 @@
     <div class="row">
         <div class="col-lg-6">
             <form action="/Products/Index" method="get" name="search-form">
-                <div class="form-group">
-                    <label for="keyword">Search by keyword :</label>
-                    <input type="text" name="keyword" class="form-control" />
+                <div class="">
+                    <label for="keyword" style="color: black">Search by keyword :</label>
+                    <input type="text" name="keyword" class="form-control" style="background-color: #ffffff; border-radius: 25px; padding: 20px;border:none"/>
                 </div>
                 <input type="hidden" name="start" />
                 <input type="hidden" name="end" />
@@ -22,18 +22,18 @@
                 <input type="hidden" name="page" value="@currentPage" />
                 <input type="hidden" name="limit" value="@limit" />
                 <div class="form-group">
-                    <label for="status">Filter by status :</label>
-                    @Html.DropDownList("status", null, "ALL", htmlAttributes: new { @Id = "cateList", @class = "form-control" })
+                    <label for="status" style="color: black">Filter by status :</label>
+                    @Html.DropDownList("status", null, "ALL", htmlAttributes: new { @Id = "cateList", @class = "form-control", @style = "font-weight: 500;background-color: #ffffff;padding: 5px 15px 0; border-radius: 25px;border:none;width:20%;" })
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-primary" value="Search" />
+                    <input type="submit" class="btn btn-primary" value="Search" style="font-size:12px; border-radius: 10px"/>
                 </div>
             </form>
         </div>
         <div class="col-lg-6">
             <div style="float:left">
-                <label for="daterange">Search by time :</label>
-                <input type="text" name="daterange" class="form-control" />
+                <label for="daterange" style="color: black">Search by time :</label>
+                <input type="text" name="daterange" class="form-control" style="background-color: #ffffff; border-radius: 25px; padding: 20px;border:none"/>
             </div>
         </div>
     </div>
@@ -52,24 +52,24 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table">
-                                <thead class=" text-primary">
+                                <thead class="text-primary">
                                     <tr>
-                                        <th>
+                                        <th style="font-size:14px; font-weight: 500">
                                             @Html.DisplayNameFor(model => model.Name)
                                         </th>
-                                        <th>
+                                        <th style="font-size:14px; font-weight: 500">
                                             <button id="sort-price" style="background: none; border: none; color: #337ab7;padding:0;margin:0">Price</button>
                                         </th>
-                                        <th>
+                                        <th style="font-size:14px; font-weight: 500">
                                             @Html.DisplayNameFor(model => model.Thumbnails)
                                         </th>
-                                        <th>
+                                        <th style="font-size:14px; font-weight: 500">
                                             <button id="sort-date" style="background: none; border: none; color: #337ab7;padding:0;margin:0">CreatedAt</button>
                                         </th>
-                                        <th>
+                                        <th style="font-size:14px; font-weight: 500">
                                             @Html.DisplayNameFor(model => model.Status)
                                         </th>
-                                        <th></th>
+                                        <th style="font-size:14px; font-weight: 500"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
