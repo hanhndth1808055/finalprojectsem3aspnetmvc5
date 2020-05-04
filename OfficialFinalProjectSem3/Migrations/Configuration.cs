@@ -102,6 +102,7 @@ namespace OfficialFinalProjectSem3.Migrations
                     userManager.AddToRole(customer2.Id, "Customer");
                     userManager.AddToRole(customer3.Id, "Customer");
                     userManager.AddToRole(customer4.Id, "Customer");
+                    userManager.AddToRole(customer5.Id, "Customer");
                     userManager.AddToRole(staff.Id, "Staff");
                     context.SaveChanges();
                 }
